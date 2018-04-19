@@ -39,13 +39,17 @@ class ViewController: UIViewController {
             let myAlertC = UIAlertController(title: "알림", message: "설정된 시간이 되었습니다.", preferredStyle: UIAlertControllerStyle.alert)
             //AlertAction 만들기
             let okAction = UIAlertAction(title: "확인", style: UIAlertActionStyle.default) { (myaction: UIAlertAction) in
-                self.view.backgroundColor = UIColor.red
+                self.view.backgroundColor = UIColor.white
             }
             let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (myaction: UIAlertAction) in
                 self.view.backgroundColor = UIColor.white
             }
             
-            let testAction = UIAlertAction(title: "삭제", style: .destructive, handler: nil)
+            let testAction = UIAlertAction(title: "삭제", style: .destructive) {
+                (myaction: UIAlertAction) in
+                self.view.backgroundColor = UIColor.white
+                self.alarmTime.text = "00:00:00"
+                }
             // AlertAction을 AlertController에 넣기
             myAlertC.addAction(okAction)
             myAlertC.addAction(cancelAction)
@@ -65,9 +69,6 @@ class ViewController: UIViewController {
         formatter.dateFormat = "hh:mm:ss"
         alarmTime.text = formatter.string(from: myDatePicker.date)
         
-    }
-    @IBAction func btRe(_ sender: Any) {
-        view.backgroundColor = UIColor.white
     }
     
     override func didReceiveMemoryWarning() {
