@@ -35,6 +35,24 @@ class ViewController: UIViewController {
         
         if realTime.text == alarmTime.text {
             view.backgroundColor = UIColor.cyan
+            
+            let myAlertC = UIAlertController(title: "알림", message: "설정된 시간이 되었습니다.", preferredStyle: UIAlertControllerStyle.alert)
+            //AlertAction 만들기
+            let okAction = UIAlertAction(title: "확인", style: UIAlertActionStyle.default) { (myaction: UIAlertAction) in
+                self.view.backgroundColor = UIColor.red
+            }
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (myaction: UIAlertAction) in
+                self.view.backgroundColor = UIColor.white
+            }
+            
+            let testAction = UIAlertAction(title: "삭제", style: .destructive, handler: nil)
+            // AlertAction을 AlertController에 넣기
+            myAlertC.addAction(okAction)
+            myAlertC.addAction(cancelAction)
+            myAlertC.addAction(testAction)
+            
+            //화면에 출력
+            present(myAlertC, animated: true, completion: nil)
         }
     }
     @IBAction func DatePickerValueChanged(_ sender: Any) {
@@ -46,6 +64,7 @@ class ViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm:ss"
         alarmTime.text = formatter.string(from: myDatePicker.date)
+        
     }
     @IBAction func btRe(_ sender: Any) {
         view.backgroundColor = UIColor.white
